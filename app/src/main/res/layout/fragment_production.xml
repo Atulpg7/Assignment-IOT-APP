@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".Fragment.ProductionFragment">
 
     <ScrollView
@@ -19,16 +20,11 @@
 
 
             <androidx.cardview.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:cardCornerRadius="5dp"
-                app:contentPadding="5dp"
-                app:cardElevation="10dp"
+                app:cardElevation="1dp"
                 app:cardUseCompatPadding="true">
-
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -40,136 +36,283 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Provide Production Details"
-                        android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
                         android:padding="3dp"
-                        android:textColor="@color/black" />
+                        android:text="Enter Production Details"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="20dp"
+                    <LinearLayout
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Job Name"
-                        app:startIconTint="@color/production_color"
-                        android:textColorHint="@color/black"
-                        app:startIconDrawable="@drawable/job_name"
-                        android:background="@drawable/pd_bg"
-                        android:paddingTop="5dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
+                            android:layout_weight=".80"
+                            android:padding="3dp"
+                            android:text="Job Name"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight=".30"
+                            android:background="@drawable/pd_bg"
+                            android:hint="Enter Job Name"
                             android:inputType="text"
-                            android:background="@android:color/transparent"/>
+                            android:maxLines="1"
+                            android:paddingStart="10dp" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="25dp"
+                    <LinearLayout
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Production Target"
-                        app:startIconTint="@color/production_color"
-                        android:textColorHint="@color/black"
-                        app:startIconDrawable="@drawable/pd_target"
-                        android:background="@drawable/pd_bg"
-                        android:paddingTop="5dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
+                            android:layout_weight=".80"
+                            android:padding="3dp"
+                            android:text="Shift Target"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight=".30"
+                            android:background="@drawable/pd_bg"
+                            android:hint="Enter Shift Target"
                             android:inputType="text"
-                            android:background="@android:color/transparent"/>
+                            android:maxLines="1"
+                            android:paddingStart="10dp" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="25dp"
+                    <LinearLayout
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Rejection Count"
-                        app:startIconTint="@color/production_color"
-                        android:textColorHint="@color/black"
-                        app:startIconDrawable="@drawable/rejection_count"
-                        android:background="@drawable/pd_bg"
-                        android:paddingTop="5dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
+                            android:layout_weight=".80"
+                            android:padding="3dp"
+                            android:text="Rejection Count"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight=".30"
+                            android:background="@drawable/pd_bg"
+                            android:hint="Enter Rejection Count"
                             android:inputType="text"
-                            android:background="@android:color/transparent"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
+                            android:maxLines="1"
+                            android:paddingStart="10dp" />
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="25dp"
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Shift Timings"
-                        app:startIconTint="@color/production_color"
-                        android:textColorHint="@color/black"
-                        app:startIconDrawable="@drawable/shift_timings"
-                        android:background="@drawable/pd_bg"
-                        android:paddingTop="5dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:inputType="text"
-                            android:background="@android:color/transparent"/>
+                            android:layout_weight=".80"
+                            android:padding="3dp"
+                            android:text="Shift Start Time"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <EditText-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_weight=".30"-->
+<!--                            android:background="@drawable/pd_bg"-->
+<!--                            android:hint="Enter Shift Start Time"-->
+<!--                            android:inputType="text"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:paddingStart="10dp" />-->
+
+                        <TextView
+                            android:id="@+id/txt_start_time"
+                            android:background="@drawable/pd_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Select Start Time"
+                            android:layout_weight=".30"
+                            android:paddingLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:drawablePadding="2dp"
+                            android:drawableLeft="@drawable/shift_timings"/>
 
 
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="25dp"
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Operator Name"
-                        app:startIconTint="@color/production_color"
-                        android:textColorHint="@color/black"
-                        app:startIconDrawable="@drawable/user_pd"
-                        android:background="@drawable/pd_bg"
-                        android:paddingTop="5dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
-                            android:inputType="text"
-                            android:background="@android:color/transparent"/>
+                            android:layout_weight=".80"
+                            android:padding="3dp"
+                            android:text="Shift End Time"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <EditText-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_weight=".30"-->
+<!--                            android:background="@drawable/pd_bg"-->
+<!--                            android:hint="Enter Shift End Time"-->
+<!--                            android:inputType="text"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:paddingStart="10dp" />-->
+
+
+
+                        <TextView
+                            android:id="@+id/txt_end_time"
+                            android:background="@drawable/pd_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Select End Time"
+                            android:layout_weight=".30"
+                            android:paddingLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:drawablePadding="2dp"
+                            android:drawableLeft="@drawable/shift_timings"/>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".80"
+                            android:padding="3dp"
+                            android:text="Operator Name"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight=".30">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".50"
+                            android:background="@drawable/pd_bg"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:padding="4dp">
+
+                            <com.jaredrummler.materialspinner.MaterialSpinner
+                                app:ms_popup_padding_bottom="5dp"
+                                android:id="@+id/spinner_operator"
+                                app:ms_arrow_tint="@color/production_color"
+                                app:ms_text_color="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/pd_main" />
+
+                        </LinearLayout>
+
+
+
+                            <EditText
+                                android:id="@+id/other_operator"
+                                android:visibility="gone"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_weight=".30"
+                                android:background="@drawable/pd_bg"
+                                android:hint="Enter Operator Name"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:paddingStart="10dp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
+
+
             </androidx.cardview.widget.CardView>
 
 
-
             <Button
-                android:layout_margin="10dp"
-                android:elevation="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit"
+                android:layout_margin="10dp"
+                android:background="@drawable/pd_btn"
+                android:elevation="10dp"
                 android:padding="15dp"
+                android:text="Submit"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="15sp"
-                android:background="@drawable/pd_btn" />
+                android:textStyle="bold"
+                android:visibility="visible" />
 
         </LinearLayout>
 

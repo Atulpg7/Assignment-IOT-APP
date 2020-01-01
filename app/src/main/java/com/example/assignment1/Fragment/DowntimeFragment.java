@@ -47,7 +47,7 @@ public class DowntimeFragment extends Fragment {
 
         recyclerView=view.findViewById(R.id.recycler_view_reason);
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),getCols(getContext(),200),GridLayoutManager.VERTICAL,false);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),getCols(getContext(),130),GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         //Toast.makeText(getContext(), ""+getCols(getContext(),200), Toast.LENGTH_SHORT).show();
@@ -63,42 +63,6 @@ public class DowntimeFragment extends Fragment {
 
 
         recyclerView.setAdapter(adapter_reason);
-
-/*
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(getContext() ,   "Done", Toast.LENGTH_SHORT).show();
-
-
-            }
-        });*/
-
-        //spinner.setItems(reasons);
-
-
-        /*
-        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-
-
-                if(!item.toString().equals("--- Select Option ---")){
-                    spinner.setTextColor(getResources().getColor(R.color.downtime_color));
-                }else{
-                    spinner.setTextColor(getResources().getColor(R.color.grey));
-                }
-
-
-                if (item.toString().equals("Other")){
-                    more_reason.setVisibility(View.VISIBLE);
-                }else{
-                    more_reason.setVisibility(View.GONE);
-                }
-
-            }
-        });*/
 
 
 
@@ -154,6 +118,6 @@ public class DowntimeFragment extends Fragment {
         //Soring the list
         Collections.sort(reasons);
 
-        reasons.add("Other");
+      //  reasons.add("Other");
     }
 }

@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2A42CC</color>
-    <color name="colorPrimaryDark">#25089E</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="white">#F0ECEC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
     <!-- Colors for cards-->
-    <color name="production_color">#B02789</color>
-    <color name="downtime_color">#B388FF</color>
-    <color name="job_color">#BA118F88</color>
-    <color name="name_color">#CBEB5526</color>
-    <color name="machine_color">#80D8FF</color>
-    <color name="shift">#2979FF</color>
+    <color name="production_color">#239B92</color>
+    <color name="downtime_color">#23529B</color>
+    <color name="job_color">#db5532</color>
+    <color name="name_color">#9bd434</color>
+    <color name="machine_color">#2190de</color>
+    <color name="shift">#443e75</color>
     <color name="shift_no">#DF69F0AE</color>
 
 
     <!-- colors for bars-->
-    <color name="safe">#129961</color>
-    <color name="medium">#FFD740</color>
-    <color name="danger">#D0F32020</color>
+    <color name="safe">#239B56</color>
+    <color name="medium">#F4D03F</color>
+    <color name="danger">#FF0000</color>
 
 
 
     <!-- Chart Colors -->
-    <color name="orange">#FF5722</color>
-    <color name="pinkish">#E91E63</color>
+    <color name="orange">#003f5c</color>
+    <color name="pinkish">#d15088</color>
 
 
 

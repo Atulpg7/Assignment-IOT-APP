@@ -7,8 +7,22 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.assignment1.ui.home.HomeFragment"
+        android:name="com.example.assignment1.Fragment.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
+
+
+    <fragment
+        android:id="@+id/nav_downtime"
+        android:name="com.example.assignment1.Fragment.DowntimeFragment"
+        android:label="@string/menue_downtime"
+        tools:layout="@layout/fragment_downtime" />
+
+
+    <fragment
+        android:id="@+id/nav_production"
+        android:name="com.example.assignment1.Fragment.ProductionFragment"
+        android:label="@string/menu_production"
+        tools:layout="@layout/fragment_production" />
 
 </navigation>

@@ -4,6 +4,6 @@
     <string name="action_settings">Settings</string>
     <string name="menu_home">Home</string>
     <string name="menue_downtime">Downtime</string>
-    <string name="menu_production">Production data</string>
+    <string name="menu_production">Production Data</string>
 
 </resources>

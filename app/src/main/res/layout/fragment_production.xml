@@ -3,13 +3,177 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ProductionFragment">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:text="Production Fragment" />
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:contentPadding="5dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Provide Production Details"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:padding="3dp"
+                        android:textColor="@color/black" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Job Name"
+                        app:startIconTint="@color/pd_main"
+                        android:textColorHint="@color/pd_main"
+                        app:startIconDrawable="@drawable/job_name"
+                        android:background="@drawable/pd_bg"
+                        android:paddingTop="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:background="@android:color/transparent"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Production Target"
+                        app:startIconTint="@color/pd_main"
+                        android:textColorHint="@color/pd_main"
+                        app:startIconDrawable="@drawable/pd_target"
+                        android:background="@drawable/pd_bg"
+                        android:paddingTop="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:background="@android:color/transparent"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Rejection Count"
+                        app:startIconTint="@color/pd_main"
+                        android:textColorHint="@color/pd_main"
+                        app:startIconDrawable="@drawable/rejection_count"
+                        android:background="@drawable/pd_bg"
+                        android:paddingTop="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:background="@android:color/transparent"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Shift Timings"
+                        app:startIconTint="@color/pd_main"
+                        android:textColorHint="@color/pd_main"
+                        app:startIconDrawable="@drawable/shift_timings"
+                        android:background="@drawable/pd_bg"
+                        android:paddingTop="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:background="@android:color/transparent"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Operator Name"
+                        app:startIconTint="@color/pd_main"
+                        android:textColorHint="@color/pd_main"
+                        app:startIconDrawable="@drawable/user_pd"
+                        android:background="@drawable/pd_bg"
+                        android:paddingTop="5dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:background="@android:color/transparent"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <Button
+                android:layout_margin="10dp"
+                android:elevation="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:padding="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@drawable/pd_btn" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </FrameLayout>

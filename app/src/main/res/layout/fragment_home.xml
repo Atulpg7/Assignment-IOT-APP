@@ -13,12 +13,11 @@
 
         <!-- First Card -->
         <androidx.cardview.widget.CardView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:contentPadding="5dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             app:cardUseCompatPadding="true">
 
 
@@ -68,7 +67,7 @@
                             android:text="Production"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="12dp"/>
+                            android:textSize="12sp"/>
 
 
                         <TextView
@@ -77,7 +76,7 @@
                             android:text="700/700"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="18dp"/>
+                            android:textSize="18sp"/>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -102,7 +101,7 @@
                             android:text="Downtime"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="12dp"/>
+                            android:textSize="12sp"/>
 
 
                         <TextView
@@ -111,7 +110,7 @@
                             android:text="00:04:56"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="18dp"/>
+                            android:textSize="18sp"/>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -147,7 +146,7 @@
                             android:text="Job running"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="12dp"/>
+                            android:textSize="12sp"/>
 
 
                         <TextView
@@ -156,7 +155,7 @@
                             android:text="Maintenance"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="18dp"/>
+                            android:textSize="18sp"/>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -181,7 +180,7 @@
                             android:text="Operator name"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="12dp"/>
+                            android:textSize="12sp"/>
 
 
                         <TextView
@@ -190,7 +189,7 @@
                             android:text="Some name"
                             android:textStyle="bold"
                             android:textColor="@color/white"
-                            android:textSize="18dp"/>
+                            android:textSize="18sp"/>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -207,12 +206,11 @@
 
         <!---Second Card View-->
         <androidx.cardview.widget.CardView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:contentPadding="5dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             app:cardUseCompatPadding="true">
 
 
@@ -258,7 +256,7 @@
                         android:textStyle="bold"
                         android:padding="5dp"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:gravity="center"/>
 
 
@@ -286,17 +284,17 @@
                         android:text="Shift"
                         android:textStyle="bold"
                         android:textColor="@android:color/white"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
-                        android:layout_weight=".30"/>
+                        android:layout_weight=".50"/>
 
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="5dp"
-                            android:layout_weight=".10"
+                            android:layout_weight=".20"
                             android:layout_gravity="center_vertical"
                             app:cardBackgroundColor="@color/shift_no">
 
@@ -333,12 +331,11 @@
         <!--- Third Card -->
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:contentPadding="5dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -370,13 +367,13 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
-                    android:layout_weight=".90"/>
+                    android:layout_weight=".50"/>
 
                 <TextView
-                    android:layout_weight=".35"
+                    android:layout_weight=".50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=":84%"
+                    android:text="84%"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="@color/safe" />
@@ -409,13 +406,13 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
-                    android:layout_weight=".90"/>
+                    android:layout_weight=".50"/>
 
                 <TextView
-                    android:layout_weight=".35"
+                    android:layout_weight=".50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=":26%"
+                    android:text="26%"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="@color/medium" />
@@ -447,13 +444,13 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
-                    android:layout_weight=".90"/>
+                    android:layout_weight=".50"/>
 
                 <TextView
-                    android:layout_weight=".35"
+                    android:layout_weight=".50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=":96%"
+                    android:text="96%"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/danger" />
@@ -478,12 +475,11 @@
         <!--- Fourth Card -->
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:contentPadding="5dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             app:cardUseCompatPadding="true">
 
             <LinearLayout
@@ -567,7 +563,7 @@
             android:padding="15dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:background="@drawable/alarm_btn" />
         
     </LinearLayout>

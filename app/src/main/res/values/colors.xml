@@ -6,6 +6,10 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
+
+    <!-- Extra -->
+    <color name="pd_main">#7C4DFF</color>
+
     <!-- Colors for cards-->
     <color name="production_color">#239B92</color>
     <color name="downtime_color">#23529B</color>

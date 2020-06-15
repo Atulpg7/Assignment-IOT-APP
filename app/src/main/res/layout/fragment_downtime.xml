@@ -3,13 +3,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.DowntimeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.DowntimeFragment"
+    android:layout_gravity="center">
 
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:text="Downtime Fragment" />
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:contentPadding="5dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Machine Off ! What's the reason ?"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:padding="3dp"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:background="@drawable/spinner_bg">
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Select Reason"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@android:color/black"-->
+<!--                        android:layout_weight=".70"/>-->
+
+
+                    <com.jaredrummler.materialspinner.MaterialSpinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/downtime_color"
+                        app:ms_arrow_tint="@color/production_color"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="More about reason ?"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:padding="3dp"
+                    android:textColor="@android:color/black" />
+
+
+                    <EditText
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@drawable/spinner_bg"
+                        android:padding="5dp"
+                        android:gravity="start"
+                        android:textSize="15sp"
+                        android:textColor="@color/downtime_color"
+                        android:textColorHint="@color/downtime_color"
+                        android:hint="Tell something more about the reason..."/>
+
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:layout_margin="10dp"
+            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:background="@drawable/downtime_btn" />
+
+
+
+</LinearLayout>
+
+
+    </ScrollView>
 
 </FrameLayout>

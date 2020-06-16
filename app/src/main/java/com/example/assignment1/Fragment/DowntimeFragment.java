@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +21,8 @@ public class DowntimeFragment extends Fragment {
 
     MaterialSpinner spinner;
     ArrayList<String> reasons;
+    LinearLayout more_reason;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -28,10 +33,32 @@ public class DowntimeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_downtime, container, false);
 
         spinner=view.findViewById(R.id.spinner);
+        more_reason=view.findViewById(R.id.more_reason);
 
         setReasons();
 
         spinner.setItems(reasons);
+
+
+        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+
+
+                if(!item.toString().equals("--- Select Option ---")){
+                    spinner.setTextColor(getResources().getColor(R.color.downtime_color));
+                }else{
+                    spinner.setTextColor(getResources().getColor(R.color.grey));
+                }
+
+                if (item.toString().equals("Other")){
+                    more_reason.setVisibility(View.VISIBLE);
+                }else{
+                    more_reason.setVisibility(View.GONE);
+                }
+
+            }
+        });
 
 
 
@@ -42,7 +69,6 @@ public class DowntimeFragment extends Fragment {
     private void setReasons() {
 
         reasons=new ArrayList<>();
-
 
         reasons.add("--- Select Option ---");
         reasons.add("Absent");

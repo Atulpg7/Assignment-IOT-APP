@@ -5,10 +5,12 @@
     <color name="colorAccent">#D81B60</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="grey">#808080</color>
 
 
     <!-- Extra -->
-    <color name="pd_main">#7C4DFF</color>
+    <color name="pd_bar">#7C4DFF</color>
+    <color name="pd_main">#40C4FF</color>
 
     <!-- Colors for cards-->
     <color name="production_color">#239B92</color>

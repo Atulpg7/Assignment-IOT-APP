@@ -68,14 +68,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@color/downtime_color"
                         app:ms_arrow_tint="@color/production_color"/>
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/more_reason"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="More about reason ?"
@@ -94,8 +99,8 @@
                         android:gravity="start"
                         android:textSize="15sp"
                         android:textColor="@color/downtime_color"
-                        android:textColorHint="@color/downtime_color"
                         android:hint="Tell something more about the reason..."/>
+                </LinearLayout>
 
 
 

@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Changing color of ActionBar
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#344955"));
-        actionBar.setBackgroundDrawable(colorDrawable);
+//        ActionBar actionBar;
+//        actionBar = getSupportActionBar();
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#344955"));
+//        actionBar.setBackgroundDrawable(colorDrawable);
 
     }
 

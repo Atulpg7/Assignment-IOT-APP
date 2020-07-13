@@ -49,12 +49,12 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Job Name"
-                        app:startIconTint="@color/pd_main"
-                        android:textColorHint="@color/pd_main"
+                        app:startIconTint="@color/production_color"
+                        android:textColorHint="@color/black"
                         app:startIconDrawable="@drawable/job_name"
                         android:background="@drawable/pd_bg"
                         android:paddingTop="5dp">
@@ -70,12 +70,12 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Production Target"
-                        app:startIconTint="@color/pd_main"
-                        android:textColorHint="@color/pd_main"
+                        app:startIconTint="@color/production_color"
+                        android:textColorHint="@color/black"
                         app:startIconDrawable="@drawable/pd_target"
                         android:background="@drawable/pd_bg"
                         android:paddingTop="5dp">
@@ -91,12 +91,12 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Rejection Count"
-                        app:startIconTint="@color/pd_main"
-                        android:textColorHint="@color/pd_main"
+                        app:startIconTint="@color/production_color"
+                        android:textColorHint="@color/black"
                         app:startIconDrawable="@drawable/rejection_count"
                         android:background="@drawable/pd_bg"
                         android:paddingTop="5dp">
@@ -113,12 +113,12 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Shift Timings"
-                        app:startIconTint="@color/pd_main"
-                        android:textColorHint="@color/pd_main"
+                        app:startIconTint="@color/production_color"
+                        android:textColorHint="@color/black"
                         app:startIconDrawable="@drawable/shift_timings"
                         android:background="@drawable/pd_bg"
                         android:paddingTop="5dp">
@@ -135,12 +135,12 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Operator Name"
-                        app:startIconTint="@color/pd_main"
-                        android:textColorHint="@color/pd_main"
+                        app:startIconTint="@color/production_color"
+                        android:textColorHint="@color/black"
                         app:startIconDrawable="@drawable/user_pd"
                         android:background="@drawable/pd_bg"
                         android:paddingTop="5dp">

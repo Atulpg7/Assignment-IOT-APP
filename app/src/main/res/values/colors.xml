@@ -32,6 +32,15 @@
     <!-- Chart Colors -->
     <color name="orange">#003f5c</color>
     <color name="pinkish">#d15088</color>
+    <color name="card">#48C9B0</color>
+
+
+<!--    Chart Colors-->
+    <color name="active">#77ce18</color>
+    <color name="not_active">#ff1c2b</color>
+
+
+<!--    ff0099cc-->
 
 
 

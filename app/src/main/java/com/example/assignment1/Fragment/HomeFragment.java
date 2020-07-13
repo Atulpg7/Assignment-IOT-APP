@@ -19,7 +19,7 @@ public class HomeFragment extends Fragment {
 
 
     //Var for pie chart
-    PieChartView pieChartView;
+    PieChartView chartView1,chartView2;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,26 +31,55 @@ public class HomeFragment extends Fragment {
 
 
         //Setting Pie Chart
-        pieChartView=view.findViewById(R.id.chart);
+        chartView1=view.findViewById(R.id.chart1);
+        chartView2=view.findViewById(R.id.chart2);
 
 
-        //Making partitions how many partitions required in pie chart
-        List pieData = new ArrayList<>();
-        pieData.add(new SliceValue(70, Color.parseColor("#003f5c")));
-        pieData.add(new SliceValue(30, Color.parseColor("#d15088")));
+        setChart1();
+        setChart2();
 
-
-        //Loading the data in pie chart
-        PieChartData pieChartData = new PieChartData(pieData);
-        pieChartData.setHasLabels(true).setValueLabelTextSize(14);
-
-        //Setting Circle in center of pie-chart, and heading in center.
-        pieChartData.setHasCenterCircle(true).setCenterText1("OEE 30%")
-                .setCenterText1FontSize(30).setCenterText1Color(Color.parseColor("#FF5722"));
-        pieChartView.setPieChartData(pieChartData);
 
 
         //return view
         return view;
+    }
+
+    private void setChart2() {
+
+
+        //Making partitions how many partitions required in pie chart
+        List pieData = new ArrayList<>();
+        pieData.add(new SliceValue(44, getResources().getColor(R.color.not_active)));
+        pieData.add(new SliceValue(56, getResources().getColor(R.color.active)));
+
+
+        //Loading the data in pie chart
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true).setValueLabelTextSize(10);
+
+        //Setting Circle in center of pie-chart, and heading in center.
+        pieChartData.setHasCenterCircle(true).setCenterText1("PRODUCTION 56%")
+                .setCenterText1FontSize(10).setCenterText1Color(Color.parseColor("#FF5722"));
+        chartView2.setPieChartData(pieChartData);
+        chartView2.setChartRotationEnabled(false);
+    }
+
+    private void setChart1() {
+
+        //Making partitions how many partitions required in pie chart
+        List pieData = new ArrayList<>();
+        pieData.add(new SliceValue(46, getResources().getColor(R.color.not_active)));
+        pieData.add(new SliceValue(54, getResources().getColor(R.color.active)));
+
+
+        //Loading the data in pie chart
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true).setValueLabelTextSize(10);
+
+        //Setting Circle in center of pie-chart, and heading in center.
+        pieChartData.setHasCenterCircle(true).setCenterText1("OEE 54%")
+                .setCenterText1FontSize(10).setCenterText1Color(Color.parseColor("#FF5722"));
+        chartView1.setPieChartData(pieChartData);
+        chartView1.setChartRotationEnabled(false);
     }
 }

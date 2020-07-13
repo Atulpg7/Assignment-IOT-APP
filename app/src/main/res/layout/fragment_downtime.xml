@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.DowntimeFragment"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:background="@color/white">
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -44,35 +45,78 @@
                     android:padding="3dp"
                     android:textColor="@android:color/black" />
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="@color/white"
+                    android:id="@+id/recycler_view_reason"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:background="@drawable/spinner_bg">
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"/>
 
 
-<!--                    <TextView-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Select Reason"-->
-<!--                        android:textSize="15sp"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textColor="@android:color/black"-->
-<!--                        android:layout_weight=".70"/>-->
+                <LinearLayout
+                    android:id="@+id/more_reason"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:id="@+id/spinner"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        app:ms_arrow_tint="@color/production_color"/>
+                        android:text="More about reason ?"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:padding="3dp"
+                        android:textColor="@android:color/black" />
 
+
+                    <EditText
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@drawable/spinner_bg"
+                        android:padding="5dp"
+                        android:gravity="start"
+                        android:textSize="15sp"
+                        android:textColor="@color/downtime_color"
+                        android:hint="Tell something more about the reason..."/>
                 </LinearLayout>
 
-                <LinearLayout
+            </LinearLayout>
+
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:background="@drawable/spinner_bg">-->
+
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Select Reason"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="15sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@android:color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight=".70"/>&ndash;&gt;-->
+
+
+<!--                    <com.jaredrummler.materialspinner.MaterialSpinner-->
+<!--                        android:id="@+id/spinner"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="12sp"-->
+<!--                        app:ms_arrow_tint="@color/production_color"/>-->
+
+<!--                </LinearLayout>-->
+
+                <!--<LinearLayout
                     android:id="@+id/more_reason"
                     android:visibility="gone"
                     android:layout_marginTop="5dp"
@@ -104,11 +148,12 @@
 
 
 
-            </LinearLayout>
+            </LinearLayout>-->
         </androidx.cardview.widget.CardView>
 
 
         <Button
+            android:id="@+id/btnsubmit"
             android:layout_margin="10dp"
             android:elevation="10dp"
             android:layout_width="match_parent"
@@ -125,6 +170,6 @@
 </LinearLayout>
 
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

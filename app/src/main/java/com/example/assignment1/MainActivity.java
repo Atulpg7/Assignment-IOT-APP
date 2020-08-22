@@ -1,9 +1,12 @@
 package com.example.assignment1;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,6 +17,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         //Setting toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         //Setting Navigation Drawer
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //Side 3 dot's Menue
+    //Side 3 dot's Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_side, menu);
@@ -66,6 +71,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //For Logout Functionality
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.logout) {  logoutUser(); }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Logout function
+    private void logoutUser() {
+
+        MyPrefs.editor = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
+        MyPrefs.editor.putString("isAdmin","false");
+        MyPrefs.editor.putString("isLoggedIn","false");
+        MyPrefs.editor.apply();
+
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
 
     //For opening Nav bar from left side on click of three bars
     @Override

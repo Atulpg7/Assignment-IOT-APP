@@ -8,9 +8,12 @@
     <color name="grey">#808080</color>
 
 
+
+
     <!-- Extra -->
     <color name="pd_bar">#7C4DFF</color>
     <color name="pd_main">#40C4FF</color>
+    <color name="dim_gray">#FBFBFB</color>
 
     <!-- Colors for cards-->
     <color name="production_color">#239B92</color>

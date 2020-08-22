@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".Fragment.ProductionFragment">
+    tools:context=".SettingsActivity">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,15 +33,15 @@
                     android:padding="5dp">
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:text="Enter Production Details"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="3dp"-->
+<!--                        android:text="Configure Settings"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="30sp"-->
+<!--                        android:textStyle="bold" />-->
 
 
                     <LinearLayout
@@ -56,18 +56,20 @@
                             android:layout_height="wrap_content"
                             android:layout_weight=".80"
                             android:padding="3dp"
-                            android:text="Job Name"
+                            android:text="Client ID"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/c_id"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".30"
+                            android:singleLine="true"
                             android:background="@drawable/pd_bg"
-                            android:hint="Enter Job Name"
+                            android:hint="Enter Client ID"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="10dp" />
@@ -88,18 +90,20 @@
                             android:layout_height="wrap_content"
                             android:layout_weight=".80"
                             android:padding="3dp"
-                            android:text="Shift Target"
+                            android:text="Device ID"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/d_id"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".30"
+                            android:singleLine="true"
                             android:background="@drawable/pd_bg"
-                            android:hint="Enter Shift Target"
+                            android:hint="Enter Device ID"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="10dp" />
@@ -120,18 +124,20 @@
                             android:layout_height="wrap_content"
                             android:layout_weight=".80"
                             android:padding="3dp"
-                            android:text="Rejection Count"
+                            android:text="Machine ID"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/m_id"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".30"
+                            android:singleLine="true"
                             android:background="@drawable/pd_bg"
-                            android:hint="Enter Rejection Count"
+                            android:hint="Enter Machine ID"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="10dp" />
@@ -152,36 +158,27 @@
                             android:layout_height="wrap_content"
                             android:layout_weight=".80"
                             android:padding="3dp"
-                            android:text="Shift Start Time"
+                            android:text="Machine Name"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-<!--                        <EditText-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="40dp"-->
-<!--                            android:layout_weight=".30"-->
-<!--                            android:background="@drawable/pd_bg"-->
-<!--                            android:hint="Enter Shift Start Time"-->
-<!--                            android:inputType="text"-->
-<!--                            android:maxLines="1"-->
-<!--                            android:paddingStart="10dp" />-->
-
-                        <TextView
-                            android:id="@+id/txt_start_time"
-                            android:background="@drawable/pd_bg"
+                        <EditText
+                            android:id="@+id/m_name"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:text="Select Start Time"
                             android:layout_weight=".30"
-                            android:paddingLeft="5dp"
-                            android:gravity="center_vertical"
-                            android:drawablePadding="2dp"
-                            android:drawableLeft="@drawable/shift_timings"/>
+                            android:singleLine="true"
+                            android:background="@drawable/pd_bg"
+                            android:hint="Enter Machine Name"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingStart="10dp" />
 
 
                     </LinearLayout>
+
 
 
                     <LinearLayout
@@ -196,103 +193,27 @@
                             android:layout_height="wrap_content"
                             android:layout_weight=".80"
                             android:padding="3dp"
-                            android:text="Shift End Time"
+                            android:text="Server IP"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-<!--                        <EditText-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="40dp"-->
-<!--                            android:layout_weight=".30"-->
-<!--                            android:background="@drawable/pd_bg"-->
-<!--                            android:hint="Enter Shift End Time"-->
-<!--                            android:inputType="text"-->
-<!--                            android:maxLines="1"-->
-<!--                            android:paddingStart="10dp" />-->
-
-
-
-                        <TextView
-                            android:id="@+id/txt_end_time"
-                            android:background="@drawable/pd_bg"
+                        <EditText
+                            android:id="@+id/s_ip"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:text="Select End Time"
                             android:layout_weight=".30"
-                            android:paddingLeft="5dp"
-                            android:gravity="center_vertical"
-                            android:drawablePadding="2dp"
-                            android:drawableLeft="@drawable/shift_timings"/>
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:gravity="center_vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".80"
-                            android:padding="3dp"
-                            android:text="Operator Name"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight=".30">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".50"
+                            android:singleLine="true"
                             android:background="@drawable/pd_bg"
-                            android:orientation="vertical"
-                            android:layout_gravity="center_vertical"
-                            android:padding="4dp">
-
-                            <com.jaredrummler.materialspinner.MaterialSpinner
-                                app:ms_popup_padding_bottom="5dp"
-                                android:id="@+id/spinner_operator"
-                                app:ms_arrow_tint="@color/production_color"
-                                app:ms_text_color="@color/black"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/pd_main" />
-
-                        </LinearLayout>
-
-
-
-                            <EditText
-                                android:id="@+id/other_operator"
-                                android:visibility="gone"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:layout_weight=".30"
-                                android:background="@drawable/pd_bg"
-                                android:hint="Enter Operator Name"
-                                android:inputType="text"
-                                android:maxLines="1"
-                                android:paddingStart="10dp" />
-
-                        </LinearLayout>
+                            android:hint="Enter Server IP"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingStart="10dp" />
 
 
                     </LinearLayout>
+
 
 
                 </LinearLayout>
@@ -302,6 +223,7 @@
 
 
             <Button
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -319,4 +241,4 @@
 
     </ScrollView>
 
-</FrameLayout>
+</LinearLayout>

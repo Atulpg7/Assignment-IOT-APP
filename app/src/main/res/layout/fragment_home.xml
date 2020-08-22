@@ -30,7 +30,13 @@
                 android:padding="5dp">
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                 <TextView
+                    android:layout_weight=".50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
@@ -38,6 +44,33 @@
                     android:textColor="@color/production_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/configure_settings_layout"
+                        android:visibility="gone"
+                        android:layout_weight=".50"
+                        android:gravity="end"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_height="match_parent"
+                            android:text="Configure Settings"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/settings_icon"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:id="@+id/settings_icon"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
                 <LinearLayout

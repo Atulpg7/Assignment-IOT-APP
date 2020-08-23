@@ -35,38 +35,38 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <TextView
-                    android:layout_weight=".50"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="3dp"
-                    android:text="Machine Details"
-                    android:textColor="@color/production_color"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".50"
+                        android:padding="3dp"
+                        android:text="Machine Details"
+                        android:textColor="@color/production_color"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:id="@+id/configure_settings_layout"
-                        android:visibility="gone"
-                        android:layout_weight=".50"
-                        android:gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_weight=".50"
+                        android:gravity="end"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:gravity="center_vertical"
                             android:layout_height="match_parent"
-                            android:text="Configure Settings"/>
+                            android:gravity="center_vertical"
+                            android:text="Configure Settings" />
 
                         <ImageView
+                            android:id="@+id/settings_icon"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@drawable/settings_icon"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:id="@+id/settings_icon"/>
+                            android:src="@drawable/settings_icon" />
 
                     </LinearLayout>
 
@@ -91,6 +91,7 @@
 
 
                         <TextView
+                            android:id="@+id/machine_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -116,6 +117,7 @@
 
 
                         <TextView
+                            android:id="@+id/status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -167,6 +169,7 @@
 
 
                                 <TextView
+                                    android:id="@+id/shift"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -189,12 +192,11 @@
         </androidx.cardview.widget.CardView>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
 
             <!-- Live Monitoring-->
@@ -242,10 +244,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:paddingStart="5dp"
+                            android:id="@+id/job_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="XYZ"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -273,10 +276,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:paddingStart="5dp"
+                            android:id="@+id/target"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="1200"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -302,10 +306,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:paddingStart="5dp"
+                            android:id="@+id/orderno"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="10"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -332,10 +337,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:paddingStart="5dp"
+                            android:id="@+id/starttime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="9:00 AM"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -361,9 +367,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/production"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="500/700"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -389,10 +397,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:paddingStart="5dp"
+                            android:id="@+id/downtime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="00:04:56"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -417,10 +426,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:paddingStart="5dp"
+                            android:id="@+id/operator_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
+                            android:paddingStart="5dp"
                             android:text="Rajesh"
                             android:textColor="@color/machine_color"
                             android:textSize="16sp"
@@ -591,7 +601,6 @@
             </androidx.cardview.widget.CardView>
 
 
-
             <!--- OEE Card-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -677,8 +686,6 @@
             </androidx.cardview.widget.CardView>
 
 
-
-
             <!--- Machine Status Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -721,6 +728,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/availability_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
@@ -732,15 +740,16 @@
                     </LinearLayout>
 
 
-                                        <ProgressBar
-                                            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:progress="84"
-                                            android:progressBackgroundTint="#129961"
-                                            android:progressTint="#129961"
-                                            android:visibility="visible" />
+                    <ProgressBar
+                        android:id="@+id/availability_pb"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:progress="84"
+                        android:progressBackgroundTint="#129961"
+                        android:progressTint="#129961"
+                        android:visibility="visible" />
 
 
                     <LinearLayout
@@ -759,6 +768,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/productivity_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
@@ -770,15 +780,16 @@
                     </LinearLayout>
 
 
-                                        <ProgressBar
-                                            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:progress="26"
-                                            android:progressBackgroundTint="#C4FFE723"
-                                            android:progressTint="#C4FFE723"
-                                            android:visibility="visible" />
+                    <ProgressBar
+                        android:id="@+id/productivity_pb"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:progress="26"
+                        android:progressBackgroundTint="#C4FFE723"
+                        android:progressTint="#C4FFE723"
+                        android:visibility="visible" />
 
 
                     <LinearLayout
@@ -797,6 +808,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/rejection_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
@@ -807,15 +819,16 @@
 
                     </LinearLayout>
 
-                                        <ProgressBar
-                                            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="2dp"
-                                            android:progress="96"
-                                            android:progressBackgroundTint="#D0F32020"
-                                            android:progressTint="#D0F32020"
-                                            android:visibility="visible" />
+                    <ProgressBar
+                        android:id="@+id/rejection_pb"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:progress="96"
+                        android:progressBackgroundTint="#D0F32020"
+                        android:progressTint="#D0F32020"
+                        android:visibility="visible" />
 
 
                     <LinearLayout
@@ -835,6 +848,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/cycletime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".50"
@@ -851,7 +865,6 @@
 
 
         </LinearLayout>
-
 
 
         <!--        <Button-->

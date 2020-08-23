@@ -63,6 +63,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/job_name"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".30"
@@ -95,12 +96,13 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/shift_target"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".30"
                             android:background="@drawable/pd_bg"
                             android:hint="Enter Shift Target"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:maxLines="1"
                             android:paddingStart="10dp" />
 
@@ -127,12 +129,13 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/rejection_count"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".30"
                             android:background="@drawable/pd_bg"
                             android:hint="Enter Rejection Count"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:maxLines="1"
                             android:paddingStart="10dp" />
 
@@ -302,6 +305,7 @@
 
 
             <Button
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

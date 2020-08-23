@@ -3,7 +3,7 @@ package com.example.assignment1;
 public class GlobalData {
 
     static String BASE_URL = "https://";
-    static String IP_Address="";
+    static String IP_Address;
     static String SUB_URL = "";
 
 

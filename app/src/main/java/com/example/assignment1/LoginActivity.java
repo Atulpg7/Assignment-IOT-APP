@@ -31,6 +31,17 @@ public class LoginActivity extends AppCompatActivity {
         checkAlreadyLoggedIn();
     }
 
+    private void setDefaultSettings() {
+
+        MyPrefs.editor= getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
+        MyPrefs.editor.putString("c_id","C1");
+        MyPrefs.editor.putString("d_id","D1");
+        MyPrefs.editor.putString("m_id","M1");
+        MyPrefs.editor.putString("m_name","CNC-01");
+        MyPrefs.editor.putString("s_ip","172.168.1.1");
+        MyPrefs.editor.apply();
+    }
+
     private void checkAlreadyLoggedIn() {
         MyPrefs.prefs = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE);
 
@@ -56,17 +67,15 @@ public class LoginActivity extends AppCompatActivity {
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
                 
-//                if(checkLen(username) && checkLen(password)){
-//                    Toast.makeText(LoginActivity.this, "Please fill your details", Toast.LENGTH_SHORT).show();
-//                }else if(checkLen(username)){
-//                    Toast.makeText(LoginActivity.this, "Please fill username", Toast.LENGTH_SHORT).show();
-//                }else if(checkLen(password)){
-//                    Toast.makeText(LoginActivity.this, "Please fill password", Toast.LENGTH_SHORT).show();
-//                }else{
-                    
+                if(checkLen(username) && checkLen(password)){
+                    Toast.makeText(LoginActivity.this, "Please fill your details", Toast.LENGTH_SHORT).show();
+                }else if(checkLen(username)){
+                    Toast.makeText(LoginActivity.this, "Please fill username", Toast.LENGTH_SHORT).show();
+                }else if(checkLen(password)){
+                    Toast.makeText(LoginActivity.this, "Please fill password", Toast.LENGTH_SHORT).show();
+                }else{
                     new validateUser().execute();
-                    
-                //}
+                }
             }
         });
     }
@@ -92,11 +101,20 @@ public class LoginActivity extends AppCompatActivity {
 
             MyPrefs.editor = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
             MyPrefs.editor.putString("isLoggedIn","true");
-            MyPrefs.editor.putString("isAdmin","true");
+
+            if(et_username.getText().toString().equals("a")) {
+                //setDefaultSettings();
+                MyPrefs.editor.putString("isAdmin","true");
+            }
+
             MyPrefs.editor.apply();
 
-
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+
+            if(et_username.getText().toString().equals("a")){
+                intent = new Intent(LoginActivity.this,SettingsActivity.class);
+            }
+
             startActivity(intent);
             dialog.dismiss();
             finish();

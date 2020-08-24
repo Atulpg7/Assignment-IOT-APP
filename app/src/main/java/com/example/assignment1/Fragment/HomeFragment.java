@@ -290,12 +290,14 @@ public class HomeFragment extends Fragment {
         float data = Float.parseFloat(oee_ch);
 
         pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
-        pieData.add(new SliceValue(100-data, getResources().getColor(R.color.not_active)));
+
+        if(100-data > 0)
+         pieData.add(new SliceValue(100-data, getResources().getColor(R.color.grey)));
 
 
         //Loading the data in pie chart
         PieChartData pieChartData = new PieChartData(pieData);
-        pieChartData.setHasLabels(true).setValueLabelTextSize(10);
+       //pieChartData.setHasLabels(true).setValueLabelTextSize(10);
 
         //Setting Circle in center of pie-chart, and heading in center.
         pieChartData.setHasCenterCircle(true).setCenterText1("OEE "+oee_ch+"%")
@@ -318,12 +320,12 @@ public class HomeFragment extends Fragment {
         pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
 
         if(100-data > 0)
-            pieData.add(new SliceValue(100-data, getResources().getColor(R.color.not_active)));
+            pieData.add(new SliceValue(100-data, getResources().getColor(R.color.grey)));
 
 
         //Loading the data in pie chart
         PieChartData pieChartData = new PieChartData(pieData);
-        pieChartData.setHasLabels(true).setValueLabelTextSize(10);
+       // pieChartData.setHasLabels(true).setValueLabelTextSize(10);
 
         //Setting Circle in center of pie-chart, and heading in center.
         pieChartData.setHasCenterCircle(true).setCenterText1("PRODUCTION "+data+"%")

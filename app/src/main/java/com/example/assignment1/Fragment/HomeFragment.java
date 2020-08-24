@@ -31,6 +31,9 @@ import com.example.assignment1.MyPrefs;
 import com.example.assignment1.R;
 import com.example.assignment1.SettingsActivity;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +48,9 @@ public class HomeFragment extends Fragment {
 
 
     //Var for pie chart
-    PieChartView chartView1,chartView2;
+   // PieChartView chartView1,chartView2;
+    PieChart pie_chart_oee,pie_chart_production;
+
     View main_view;
     TextView machine_name,status,shift,job_name,target,order_no,start_time,production,
             downtime,operator_name,availability_tv,productivity_tv,rejection_tv,cycle_time;
@@ -183,8 +188,6 @@ public class HomeFragment extends Fragment {
         productivity_pb.setProgress((int)Double.parseDouble(prd));
         rejection_pb.setProgress((int)Double.parseDouble(rej));
 
-
-
         if(progressDialog.isShowing())
             progressDialog.dismiss();
     }
@@ -193,8 +196,8 @@ public class HomeFragment extends Fragment {
     //Function for getting reference
     private void getReferences() {
 
-        chartView1=main_view.findViewById(R.id.chart1);
-        chartView2=main_view.findViewById(R.id.chart2);
+        //chartView1=main_view.findViewById(R.id.chart1);
+        //chartView2=main_view.findViewById(R.id.chart2);
         machine_name = main_view.findViewById(R.id.machine_name);
         status = main_view.findViewById(R.id.status);
         shift = main_view.findViewById(R.id.shift);
@@ -211,7 +214,8 @@ public class HomeFragment extends Fragment {
         availability_pb = main_view.findViewById(R.id.availability_pb);
         productivity_pb = main_view.findViewById(R.id.productivity_pb);
         rejection_pb = main_view.findViewById(R.id.rejection_pb);
-
+        pie_chart_oee = main_view.findViewById(R.id.pie_chart_oee);
+        pie_chart_production = main_view.findViewById(R.id.pie_chart_production);
         cycle_time = main_view.findViewById(R.id.cycletime);
         progressDialog=new ProgressDialog(getActivity());
 
@@ -285,53 +289,67 @@ public class HomeFragment extends Fragment {
     private void setChart1() {
 
         //Making partitions how many partitions required in pie chart
-        List pieData = new ArrayList<>();
+       // List pieData = new ArrayList<>();
 
         float data = Float.parseFloat(oee_ch);
 
-        pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
+       // pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
+        pie_chart_oee.addPieSlice(new PieModel("OEE "+data+"%", data, getActivity().getResources().getColor(R.color.not_active)));
+        pie_chart_oee.setInnerValueString(data+"%");
 
-        if(100-data > 0)
-         pieData.add(new SliceValue(100-data, getResources().getColor(R.color.grey)));
+        if(100-data > 0) {
+           // pieData.add(new SliceValue(100 - data, getResources().getColor(R.color.grey)));
+            pie_chart_oee.addPieSlice(new PieModel("OEE "+data+"%", 100.0f-data, getActivity().getResources().getColor(R.color.grey)));
+        }
+
+        pie_chart_oee.startAnimation();
+
 
 
         //Loading the data in pie chart
-        PieChartData pieChartData = new PieChartData(pieData);
+        /*PieChartData pieChartData = new PieChartData(pieData);
        //pieChartData.setHasLabels(true).setValueLabelTextSize(10);
 
         //Setting Circle in center of pie-chart, and heading in center.
         pieChartData.setHasCenterCircle(true).setCenterText1("OEE "+oee_ch+"%")
                 .setCenterText1FontSize(10).setCenterText1Color(Color.parseColor("#FF5722"));
         chartView1.setPieChartData(pieChartData);
-        chartView1.setChartRotationEnabled(false);
+        chartView1.setChartRotationEnabled(false);*/
     }
 
     private void setChart2() {
 
 
+
+
+
+
         //Making partitions how many partitions required in pie chart
-        List pieData = new ArrayList<>();
+        //List pieData = new ArrayList<>();
 
-    //    int data = (int)Double.parseDouble(oee_ch);
+        float data = (Float.parseFloat(pro)/Float.parseFloat(ti))*100;
 
-          float data = (Float.parseFloat(pro)/Float.parseFloat(ti))*100;
+        //pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
+        pie_chart_production.addPieSlice(new PieModel("Production "+data+"%", data, getActivity().getResources().getColor(R.color.active)));
+        pie_chart_production.setInnerValueString(data+"%");
 
+        if(100-data > 0) {
+            //pieData.add(new SliceValue(100 - data, getResources().getColor(R.color.grey)));
+            pie_chart_production.addPieSlice(new PieModel("Production "+data+"%", 100.0f-data, getActivity().getResources().getColor(R.color.grey)));
+        }
 
-        pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
-
-        if(100-data > 0)
-            pieData.add(new SliceValue(100-data, getResources().getColor(R.color.grey)));
+        pie_chart_production.startAnimation();
 
 
         //Loading the data in pie chart
-        PieChartData pieChartData = new PieChartData(pieData);
+        //PieChartData pieChartData = new PieChartData(pieData);
        // pieChartData.setHasLabels(true).setValueLabelTextSize(10);
 
         //Setting Circle in center of pie-chart, and heading in center.
-        pieChartData.setHasCenterCircle(true).setCenterText1("PRODUCTION "+data+"%")
+        /*pieChartData.setHasCenterCircle(true).setCenterText1("PRODUCTION "+data+"%")
                 .setCenterText1FontSize(10).setCenterText1Color(Color.parseColor("#FF5722"));
         chartView2.setPieChartData(pieChartData);
-        chartView2.setChartRotationEnabled(false);
+        chartView2.setChartRotationEnabled(false);*/
     }
 
 

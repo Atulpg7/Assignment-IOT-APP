@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:scatter="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
@@ -616,14 +617,36 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:text="Overall OEE"
-                        android:textColor="@color/production_color"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".50"
+                            android:padding="3dp"
+                            android:text="Overall OEE %"
+                            android:textColor="@color/danger"
+                            android:textSize="18sp"
+                            android:textAlignment="center"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".50"
+                            android:padding="3dp"
+                            android:text="Production %"
+                            android:textAlignment="center"
+                            android:textColor="@color/active"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
 
                     <LinearLayout
@@ -634,18 +657,43 @@
                         android:orientation="horizontal">
 
 
-                        <lecho.lib.hellocharts.view.PieChartView
-                            android:id="@+id/chart1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight=".50" />
+<!--                        <lecho.lib.hellocharts.view.PieChartView-->
+<!--                            android:id="@+id/chart1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight=".50"-->
+<!--                            android:visibility="gone" />-->
 
 
-                        <lecho.lib.hellocharts.view.PieChartView
-                            android:id="@+id/chart2"
+<!--                        <lecho.lib.hellocharts.view.PieChartView-->
+<!--                            android:id="@+id/chart2"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight=".50"-->
+<!--                            android:visibility="gone" />-->
+
+
+                        <org.eazegraph.lib.charts.PieChart
+                            android:id="@+id/pie_chart_oee"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight=".50" />
+                            android:layout_weight=".50"
+                            android:layout_marginEnd="5dp"
+                            app:egLegendHeight="0dp"
+                            app:egUseCustomInnerValue="true"
+                            app:egValueTextSize="22sp"
+                            app:egShowDecimal="true"/>
+
+                        <org.eazegraph.lib.charts.PieChart
+                            android:id="@+id/pie_chart_production"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight=".50"
+                            app:egLegendHeight="0dp"
+                            app:egUseCustomInnerValue="true"
+                            app:egShowDecimal="true"
+                            app:egValueTextSize="22sp" />
 
 
                         <!--                    <LinearLayout-->

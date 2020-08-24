@@ -103,18 +103,12 @@ public class LoginActivity extends AppCompatActivity {
             MyPrefs.editor.putString("isLoggedIn","true");
 
             if(et_username.getText().toString().equals("a")) {
-                //setDefaultSettings();
                 MyPrefs.editor.putString("isAdmin","true");
             }
 
             MyPrefs.editor.apply();
 
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-
-            if(et_username.getText().toString().equals("a")){
-                intent = new Intent(LoginActivity.this,SettingsActivity.class);
-            }
-
             startActivity(intent);
             dialog.dismiss();
             finish();

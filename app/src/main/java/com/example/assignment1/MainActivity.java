@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        MyPrefs.prefs = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE);
+        String isFirstTime = MyPrefs.prefs.getString("c_id","");
+        if(isFirstTime.equals("")){
+            startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+            finish();
+        }
 
         //Changing color of ActionBar
 //        ActionBar actionBar;

@@ -47,8 +47,7 @@ public class HomeFragment extends Fragment {
 
 
 
-    //Var for pie chart
-   // PieChartView chartView1,chartView2;
+   // PieChartView chartView1,chartView2; // old chart
     PieChart pie_chart_oee,pie_chart_production;
 
     View main_view;

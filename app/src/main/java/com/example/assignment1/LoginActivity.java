@@ -18,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     
     Button btn_login;
     EditText et_username,et_password;
-
     ProgressDialog dialog;
 
     @Override
@@ -27,28 +26,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         
         getReferences();
+
         setButtonClicks();
+
         checkAlreadyLoggedIn();
     }
 
-    private void setDefaultSettings() {
-
-        MyPrefs.editor= getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
-        MyPrefs.editor.putString("c_id","C1");
-        MyPrefs.editor.putString("d_id","D1");
-        MyPrefs.editor.putString("m_id","M1");
-        MyPrefs.editor.putString("m_name","CNC-01");
-        MyPrefs.editor.putString("s_ip","172.168.1.1");
-        MyPrefs.editor.apply();
-    }
-
+    //Function for checking User is already Logged in Or not
     private void checkAlreadyLoggedIn() {
         MyPrefs.prefs = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE);
 
         String isLoggedIn = MyPrefs.prefs.getString("isLoggedIn","false");
-
-        //Toast.makeText(this, ""+isLoggedIn, Toast.LENGTH_SHORT).show();
-
         if(isLoggedIn.equals("true")){
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
             startActivity(intent);
@@ -74,15 +62,21 @@ public class LoginActivity extends AppCompatActivity {
                 }else if(checkLen(password)){
                     Toast.makeText(LoginActivity.this, "Please fill password", Toast.LENGTH_SHORT).show();
                 }else{
-                    new validateUser().execute();
+
+                    if(username.equals("admin")&&password.equals("admin")) {
+                        new validateUser().execute();
+                    }else if(username.equals("user")&&password.equals("user")){
+                        new validateUser().execute();
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Check username and password !", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
     }
 
+    //Async class for in future to fetch login credentials from API
     class validateUser extends AsyncTask<Void,Void,Void>{
-
-
 
         @Override
         protected void onPreExecute() {
@@ -96,22 +90,13 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            String URL = GlobalData.getUrl();
-
-
-            MyPrefs.editor = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
-            MyPrefs.editor.putString("isLoggedIn","true");
-
-            if(et_username.getText().toString().equals("a")) {
-                MyPrefs.editor.putString("isAdmin","true");
-            }
-
-            MyPrefs.editor.apply();
+            setSharedPrefs();
 
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
             startActivity(intent);
             dialog.dismiss();
             finish();
+
             return null;
         }
 
@@ -122,6 +107,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //Function for setting Data like user is already logged in or not or he's a user or admin
+    private void setSharedPrefs() {
+        MyPrefs.editor = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
+        MyPrefs.editor.putString("isLoggedIn","true");
+
+        if(et_username.getText().toString().equals("admin")) {
+            MyPrefs.editor.putString("isAdmin", "true");
+        }
+        MyPrefs.editor.apply();
+    }
+
 
     //Function for getting all References
     private void getReferences() {
@@ -130,7 +126,6 @@ public class LoginActivity extends AppCompatActivity {
         et_password = findViewById(R.id.et_password);
         dialog = new ProgressDialog(LoginActivity.this);
     }
-
 
 
     //Function for check the input length for validation

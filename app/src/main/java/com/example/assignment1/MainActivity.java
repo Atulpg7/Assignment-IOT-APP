@@ -52,12 +52,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        MyPrefs.prefs = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE);
-        String isFirstTime = MyPrefs.prefs.getString("c_id","");
-        if(isFirstTime.equals("")){
-            startActivity(new Intent(MainActivity.this,SettingsActivity.class));
-            finish();
-        }
+
+        //Function for checking user is admin or normal user
+        checkAdmin();
 
         //Changing color of ActionBar
 //        ActionBar actionBar;
@@ -67,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void checkAdmin() {
+        MyPrefs.prefs = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE);
+        String isFirstTime = MyPrefs.prefs.getString("c_id","");
+        if(isFirstTime.equals("")){
+            startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+            finish();
+        }
+    }
 
 
     //Side 3 dot's Menu
@@ -77,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //For Logout Functionality
+    //On menu item click on right side 3 dots
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.logout) {  logoutUser(); }
         return super.onOptionsItemSelected(item);
     }
 
-    //Logout function
+    //Logout function when user is logging out
     private void logoutUser() {
 
         MyPrefs.editor = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
 
     }
+
 
     //For opening Nav bar from left side on click of three bars
     @Override

@@ -2,7 +2,6 @@ package com.example.assignment1.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,75 +15,59 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.assignment1.GeneralClass;
-import com.example.assignment1.GlobalData;
-import com.example.assignment1.LoginActivity;
-import com.example.assignment1.MainActivity;
+import com.example.assignment1.SavedDetailsClass;
+import com.example.assignment1.ServerDataClass;
 import com.example.assignment1.MyPrefs;
 import com.example.assignment1.R;
 import com.example.assignment1.SettingsActivity;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.view.PieChartView;
+import org.json.JSONObject;
 
 public class HomeFragment extends Fragment {
 
 
-
-   // PieChartView chartView1,chartView2; // old chart
-    PieChart pie_chart_oee,pie_chart_production;
+    // PieChartView chartView1,chartView2; // old chart
+    PieChart pie_chart_oee, pie_chart_production;
 
     View main_view;
-    TextView machine_name,status,shift,job_name,target,order_no,start_time,production,
-            downtime,operator_name,availability_tv,productivity_tv,rejection_tv,cycle_time;
+    TextView machine_name, status, shift, job_name, target, order_no, start_time, production,
+            downtime, operator_name, availability_tv, productivity_tv, rejection_tv, cycle_time;
 
-    ProgressBar availability_pb,productivity_pb,rejection_pb;
+    ProgressBar availability_pb, productivity_pb, rejection_pb;
 
     ProgressDialog progressDialog;
 
-    String sta="34",sh="2",jn="22.4",ti="10",orn="A678",st="60",pro="22.4",dw="10:89:4",ona="Roshan",av="66.8",prd="56.7",rej="44.9",ct="12.06",oee_ch="22.4",prod_ch;
-
+    String sta = "34", sh = "2", jn = "22.4", ti = "10", orn = "A678", st = "60", pro = "22.4", dw = "10:89:4", ona = "Roshan", av = "66.8", prd = "56.7", rej = "44.9", ct = "12.06", oee_ch = "22.4", prod_ch;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-
         //Getting main fragment view
         main_view = inflater.inflate(R.layout.fragment_home, container, false);
-
 
 
         getReferences();
 
         checkAdminLogin();
         setGeneralClassData();
-        setDataMainPage();
 
-        //new sendData().execute();
+        //setDataMainPage();
 
+        new sendData().execute();
 
 
         setChart1();
         setChart2();
-
 
 
         //return view
@@ -92,7 +75,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    class sendData extends AsyncTask<Void,Void,Void>{
+    class sendData extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -108,17 +91,29 @@ public class HomeFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
 
 
-            Log.e("URL==> ",GlobalData.getUrl());
+            Log.e("URL Main Page==> ", ServerDataClass.getUrlHome());
 
-            StringRequest request = new StringRequest(Request.Method.POST, GlobalData.getUrl(), new Response.Listener<String>() {
+
+            JSONObject object = new JSONObject();
+
+            try {
+
+                object.put("client_id", SavedDetailsClass.cid);
+                object.put("device_id", SavedDetailsClass.did);
+                object.put("machine_id", SavedDetailsClass.mid);
+                object.put("machine_name", SavedDetailsClass.mname);
+                Log.e("Sending Server MP==> ", object.toString());
+
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, ServerDataClass.getUrlHome(), object, new Response.Listener<JSONObject>() {
                 @Override
-                public void onResponse(String response) {
+                public void onResponse(JSONObject response) {
 
-                    //progressDialog.setMessage("Fetching Data");
-
-                    Log.e("Response ==> ",""+response);
+                    Log.e("Response Main Page ==> ", "" + response);
                     progressDialog.dismiss();
-
 
                 }
             }, new Response.ErrorListener() {
@@ -126,26 +121,48 @@ public class HomeFragment extends Fragment {
                 public void onErrorResponse(VolleyError error) {
 
                     Toast.makeText(getActivity(), "Something Went Wrong !", Toast.LENGTH_SHORT).show();
-                    Log.e("Error ==> ",""+error);
+                    Log.e("Error Main Page ==> ", "" + error);
                     progressDialog.dismiss();
 
                 }
-            }){
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-
-                    HashMap<String,String> params = new HashMap<>();
-
-                    params.put("client_id",GeneralClass.cid);
-                    params.put("device_id",GeneralClass.did);
-                    params.put("machine_id",GeneralClass.mid);
-                    params.put("machine_name",GeneralClass.mname);
-
-                    Log.e("Sending Data==> ",params.toString());
-
-                    return params;
-                }
-            };
+            });
+//            StringRequest request = new StringRequest(Request.Method.GET, GlobalData.getUrlHome(), new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response) {
+//
+//                    //progressDialog.setMessage("Fetching Data");
+//
+//                    Log.e("Response Main Page ==> ",""+response);
+//                    progressDialog.dismiss();
+//
+//
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//
+//                    Toast.makeText(getActivity(), "Something Went Wrong !", Toast.LENGTH_SHORT).show();
+//                    Log.e("Error Main Page ==> ",""+error);
+//                    progressDialog.dismiss();
+//
+//                }
+//            }){
+//                @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//
+//                    HashMap<String,String> params = new HashMap<>();
+//
+//                    params.put("client_id",GeneralClass.cid);
+//                    params.put("device_id",GeneralClass.did);
+//                    params.put("machine_id",GeneralClass.mid);
+//                    params.put("machine_name",GeneralClass.mname);
+//
+//
+//                    Log.e("Sending Server MP==> ",params.toString());
+//
+//                    return params;
+//                }
+//            };
 
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
             requestQueue.add(request);
@@ -157,18 +174,18 @@ public class HomeFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            /*if(progressDialog.isShowing())
-                progressDialog.dismiss();*/
+            if (progressDialog.isShowing())
+                progressDialog.dismiss();
 
             //setDataMainPage();
         }
     }
 
 
-
+    //Function to set data of main page
     private void setDataMainPage() {
 
-        machine_name.setText(GeneralClass.mname);
+        machine_name.setText(SavedDetailsClass.mname);
         status.setText(sta);
         shift.setText(sh);
         job_name.setText(jn);
@@ -183,11 +200,11 @@ public class HomeFragment extends Fragment {
         rejection_tv.setText(rej);
         cycle_time.setText(ct);
 
-        availability_pb.setProgress((int)Double.parseDouble(av));
-        productivity_pb.setProgress((int)Double.parseDouble(prd));
-        rejection_pb.setProgress((int)Double.parseDouble(rej));
+        availability_pb.setProgress((int) Double.parseDouble(av));
+        productivity_pb.setProgress((int) Double.parseDouble(prd));
+        rejection_pb.setProgress((int) Double.parseDouble(rej));
 
-        if(progressDialog.isShowing())
+        if (progressDialog.isShowing())
             progressDialog.dismiss();
     }
 
@@ -195,8 +212,6 @@ public class HomeFragment extends Fragment {
     //Function for getting reference
     private void getReferences() {
 
-        //chartView1=main_view.findViewById(R.id.chart1);
-        //chartView2=main_view.findViewById(R.id.chart2);
         machine_name = main_view.findViewById(R.id.machine_name);
         status = main_view.findViewById(R.id.status);
         shift = main_view.findViewById(R.id.shift);
@@ -216,60 +231,63 @@ public class HomeFragment extends Fragment {
         pie_chart_oee = main_view.findViewById(R.id.pie_chart_oee);
         pie_chart_production = main_view.findViewById(R.id.pie_chart_production);
         cycle_time = main_view.findViewById(R.id.cycletime);
-        progressDialog=new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(getActivity());
 
     }
 
 
+    //Function to set General class data for all activities to send
+    // to the server
     private void setGeneralClassData() {
 
-        MyPrefs.prefs = getActivity().getSharedPreferences(MyPrefs.MY_PREF_NAME,getActivity().MODE_PRIVATE);
-        String cid = MyPrefs.prefs.getString("c_id","");
-        String did = MyPrefs.prefs.getString("d_id","");
-        String mid = MyPrefs.prefs.getString("m_id","");
-        String mname = MyPrefs.prefs.getString("m_name","");
-        String sip = MyPrefs.prefs.getString("s_ip","");
+        MyPrefs.prefs = getActivity().getSharedPreferences(MyPrefs.MY_PREF_NAME, getActivity().MODE_PRIVATE);
+        String cid = MyPrefs.prefs.getString("c_id", "");
+        String did = MyPrefs.prefs.getString("d_id", "");
+        String mid = MyPrefs.prefs.getString("m_id", "");
+        String mname = MyPrefs.prefs.getString("m_name", "");
+        String sip = MyPrefs.prefs.getString("s_ip", "");
 
-        GlobalData.setIP_Address(sip);//Setting IP Address
+        ServerDataClass.setIP_Address(sip);//Setting IP Address
 
 
-        if (!checkLen(cid)){
-            GeneralClass.cid=cid;
+        if (!checkLen(cid)) {
+            SavedDetailsClass.cid = cid;
         }
 
-        if (!checkLen(did)){
-            GeneralClass.did=did;
+        if (!checkLen(did)) {
+            SavedDetailsClass.did = did;
         }
 
-        if (!checkLen(mid)){
-            GeneralClass.mid=mid;
+        if (!checkLen(mid)) {
+            SavedDetailsClass.mid = mid;
         }
 
-        if (!checkLen(mname)){
-            GeneralClass.mname=mname;
+        if (!checkLen(mname)) {
+            SavedDetailsClass.mname = mname;
         }
 
-        if (!checkLen(sip)){
-            GeneralClass.sip=sip;
+        if (!checkLen(sip)) {
+            SavedDetailsClass.sip = sip;
+            ServerDataClass.setIP_Address(sip);
         }
 
 
     }
 
 
+    //Function to validating strings length
     private boolean checkLen(String s) {
         return s.equals("");
     }
 
 
+    //Function to check Logged in user is admin or normal user
     private void checkAdminLogin() {
 
-        MyPrefs.prefs = getActivity().getSharedPreferences(MyPrefs.MY_PREF_NAME,getActivity().MODE_PRIVATE);
-        String isAdmin = MyPrefs.prefs.getString("isAdmin","false");
+        MyPrefs.prefs = getActivity().getSharedPreferences(MyPrefs.MY_PREF_NAME, getActivity().MODE_PRIVATE);
+        String isAdmin = MyPrefs.prefs.getString("isAdmin", "false");
 
-        //Toast.makeText(getActivity(), ""+isAdmin, Toast.LENGTH_SHORT).show();
-
-        if (isAdmin.equals("true")){
+        if (isAdmin.equals("true")) {
             main_view.findViewById(R.id.configure_settings_layout).setVisibility(View.VISIBLE);
             main_view.findViewById(R.id.settings_icon).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -284,73 +302,34 @@ public class HomeFragment extends Fragment {
     }
 
 
-
+    //Function to set OEE percentage chart
     private void setChart1() {
 
-        //Making partitions how many partitions required in pie chart
-       // List pieData = new ArrayList<>();
-
         float data = Float.parseFloat(oee_ch);
+        pie_chart_oee.addPieSlice(new PieModel("OEE " + data + "%", data, getActivity().getResources().getColor(R.color.not_active)));
+        pie_chart_oee.setInnerValueString(data + "%");
 
-       // pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
-        pie_chart_oee.addPieSlice(new PieModel("OEE "+data+"%", data, getActivity().getResources().getColor(R.color.not_active)));
-        pie_chart_oee.setInnerValueString(data+"%");
-
-        if(100-data > 0) {
-           // pieData.add(new SliceValue(100 - data, getResources().getColor(R.color.grey)));
-            pie_chart_oee.addPieSlice(new PieModel("OEE "+data+"%", 100.0f-data, getActivity().getResources().getColor(R.color.grey)));
+        if (100 - data > 0) {
+            pie_chart_oee.addPieSlice(new PieModel("OEE " + data + "%", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
         }
 
         pie_chart_oee.startAnimation();
-
-
-
-        //Loading the data in pie chart
-        /*PieChartData pieChartData = new PieChartData(pieData);
-       //pieChartData.setHasLabels(true).setValueLabelTextSize(10);
-
-        //Setting Circle in center of pie-chart, and heading in center.
-        pieChartData.setHasCenterCircle(true).setCenterText1("OEE "+oee_ch+"%")
-                .setCenterText1FontSize(10).setCenterText1Color(Color.parseColor("#FF5722"));
-        chartView1.setPieChartData(pieChartData);
-        chartView1.setChartRotationEnabled(false);*/
     }
 
+    //Function to set Production percentage chart
     private void setChart2() {
 
+        float data = (Float.parseFloat(pro) / Float.parseFloat(ti)) * 100;
 
+        pie_chart_production.addPieSlice(new PieModel("Production " + data + "%", data, getActivity().getResources().getColor(R.color.active)));
+        pie_chart_production.setInnerValueString(data + "%");
 
-
-
-
-        //Making partitions how many partitions required in pie chart
-        //List pieData = new ArrayList<>();
-
-        float data = (Float.parseFloat(pro)/Float.parseFloat(ti))*100;
-
-        //pieData.add(new SliceValue(data, getResources().getColor(R.color.active)));
-        pie_chart_production.addPieSlice(new PieModel("Production "+data+"%", data, getActivity().getResources().getColor(R.color.active)));
-        pie_chart_production.setInnerValueString(data+"%");
-
-        if(100-data > 0) {
-            //pieData.add(new SliceValue(100 - data, getResources().getColor(R.color.grey)));
-            pie_chart_production.addPieSlice(new PieModel("Production "+data+"%", 100.0f-data, getActivity().getResources().getColor(R.color.grey)));
+        if (100 - data > 0) {
+            pie_chart_production.addPieSlice(new PieModel("Production " + data + "%", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
         }
 
         pie_chart_production.startAnimation();
-
-
-        //Loading the data in pie chart
-        //PieChartData pieChartData = new PieChartData(pieData);
-       // pieChartData.setHasLabels(true).setValueLabelTextSize(10);
-
-        //Setting Circle in center of pie-chart, and heading in center.
-        /*pieChartData.setHasCenterCircle(true).setCenterText1("PRODUCTION "+data+"%")
-                .setCenterText1FontSize(10).setCenterText1Color(Color.parseColor("#FF5722"));
-        chartView2.setPieChartData(pieChartData);
-        chartView2.setChartRotationEnabled(false);*/
     }
-
 
 
 }

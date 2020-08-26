@@ -29,8 +29,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.assignment1.Adapter.Adapter_Reason;
-import com.example.assignment1.GeneralClass;
-import com.example.assignment1.GlobalData;
+import com.example.assignment1.SavedDetailsClass;
+import com.example.assignment1.ServerDataClass;
 import com.example.assignment1.R;
 
 import java.text.SimpleDateFormat;
@@ -73,7 +73,7 @@ public class DowntimeFragment extends Fragment {
 
         setButtonClicks();
 
-        machine_name.setText(GeneralClass.mname);
+        machine_name.setText(SavedDetailsClass.mname);
 
 
 
@@ -121,9 +121,9 @@ public class DowntimeFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.e("URL==> ", GlobalData.getUrl());
+            //Log.e("URL==> ", GlobalData.getUrl());
 
-            StringRequest request = new StringRequest(Request.Method.POST, GlobalData.getUrl(), new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, ServerDataClass.getUrlDowntime(), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 
@@ -147,10 +147,10 @@ public class DowntimeFragment extends Fragment {
 
                     HashMap<String,String> params = new HashMap<>();
 
-                    params.put("client_id",GeneralClass.cid);
-                    params.put("device_id",GeneralClass.did);
-                    params.put("machine_id",GeneralClass.mid);
-                    params.put("machine_name",GeneralClass.mname);
+                    params.put("client_id", SavedDetailsClass.cid);
+                    params.put("device_id", SavedDetailsClass.did);
+                    params.put("machine_id", SavedDetailsClass.mid);
+                    params.put("machine_name", SavedDetailsClass.mname);
                     params.put("start_time",start_time.getText().toString().trim());
                     params.put("end_time",end_time.getText().toString().trim());
                     params.put("reason",reason);

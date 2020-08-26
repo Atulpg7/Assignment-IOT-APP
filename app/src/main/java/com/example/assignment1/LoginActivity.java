@@ -55,22 +55,22 @@ public class LoginActivity extends AppCompatActivity {
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
                 
-                if(checkLen(username) && checkLen(password)){
-                    Toast.makeText(LoginActivity.this, "Please fill your details", Toast.LENGTH_SHORT).show();
-                }else if(checkLen(username)){
-                    Toast.makeText(LoginActivity.this, "Please fill username", Toast.LENGTH_SHORT).show();
-                }else if(checkLen(password)){
-                    Toast.makeText(LoginActivity.this, "Please fill password", Toast.LENGTH_SHORT).show();
-                }else{
+//                if(checkLen(username) && checkLen(password)){
+//                    Toast.makeText(LoginActivity.this, "Please fill your details", Toast.LENGTH_SHORT).show();
+//                }else if(checkLen(username)){
+//                    Toast.makeText(LoginActivity.this, "Please fill username", Toast.LENGTH_SHORT).show();
+//                }else if(checkLen(password)){
+//                    Toast.makeText(LoginActivity.this, "Please fill password", Toast.LENGTH_SHORT).show();
+//                }else{
 
-                    if(username.equals("admin")&&password.equals("admin")) {
+//                    if(username.equals("admin")&&password.equals("admin")) {
+//                        new validateUser().execute();
+//                    }else if(username.equals("user")&&password.equals("user")){
                         new validateUser().execute();
-                    }else if(username.equals("user")&&password.equals("user")){
-                        new validateUser().execute();
-                    }else{
-                        Toast.makeText(LoginActivity.this, "Check username and password !", Toast.LENGTH_SHORT).show();
-                    }
-                }
+//                    }else{
+                       // Toast.makeText(LoginActivity.this, "Check username and password !", Toast.LENGTH_SHORT).show();
+                    //}
+                //}
             }
         });
     }
@@ -107,12 +107,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    //Function for setting Data like user is already logged in or not or he's a user or admin
+    //Function for setting Data user is already logged in or not or he's a user or admin
     private void setSharedPrefs() {
         MyPrefs.editor = getSharedPreferences(MyPrefs.MY_PREF_NAME,MODE_PRIVATE).edit();
         MyPrefs.editor.putString("isLoggedIn","true");
 
-        if(et_username.getText().toString().equals("admin")) {
+        if(et_username.getText().toString().equals("")) {
             MyPrefs.editor.putString("isAdmin", "true");
         }
         MyPrefs.editor.apply();

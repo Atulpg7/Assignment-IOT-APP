@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.assignment1.SavedDetailsClass;
 import com.example.assignment1.ServerDataClass;
@@ -29,7 +33,12 @@ import com.example.assignment1.SettingsActivity;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -45,7 +54,10 @@ public class HomeFragment extends Fragment {
 
     ProgressDialog progressDialog;
 
-    String sta = "34", sh = "2", jn = "22.4", ti = "10", orn = "A678", st = "60", pro = "22.4", dw = "10:89:4", ona = "Roshan", av = "66.8", prd = "56.7", rej = "44.9", ct = "12.06", oee_ch = "22.4", prod_ch;
+    String sta , sh , jn , ti , orn , st , pro , dw , ona , av , prd = "56.7", rej , ct , oee_ch;
+
+    Handler handler;
+    Runnable runnable;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -59,31 +71,46 @@ public class HomeFragment extends Fragment {
         getReferences();
 
         checkAdminLogin();
+
         setGeneralClassData();
 
-        //setDataMainPage();
+        new fetchData().execute();
 
-        new sendData().execute();
+        startTimerforAgainHit();
 
-
-        setChart1();
-        setChart2();
 
 
         //return view
         return main_view;
     }
 
+    private void startTimerforAgainHit() {
 
-    class sendData extends AsyncTask<Void, Void, Void> {
+        final int delay = 30000;//After 30 sec URL hit again
+        handler=new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                new fetchData().execute();
+                handler.postDelayed(this,delay);
+            }
+        };
+
+        handler.postDelayed(runnable,delay);
+
+    }
+
+
+    class fetchData extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog.setMessage("Sending Data...");
-            progressDialog.setCancelable(false);
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
+//            progressDialog.setMessage("Fetching Data...");
+//            progressDialog.setCancelable(false);
+//            progressDialog.setCanceledOnTouchOutside(false);
+//            progressDialog.show();
         }
 
 
@@ -102,6 +129,7 @@ public class HomeFragment extends Fragment {
                 object.put("device_id", SavedDetailsClass.did);
                 object.put("machine_id", SavedDetailsClass.mid);
                 object.put("machine_name", SavedDetailsClass.mname);
+                object.put("content-type","application/json");
                 Log.e("Sending Server MP==> ", object.toString());
 
             } catch (Exception e) {
@@ -113,8 +141,31 @@ public class HomeFragment extends Fragment {
                 public void onResponse(JSONObject response) {
 
                     Log.e("Response Main Page ==> ", "" + response);
-                    progressDialog.dismiss();
 
+                    try {
+                        sta = response.getString("status");
+                        sh  = response.getString("shift");
+                        jn  = response.getString("job_name");
+                        ti  = response.getString("target");
+                        orn  = response.getString("order_no");
+                        st  = response.getString("start_time");
+                        pro  = response.getString("production");
+                        dw  = response.getString("downtime");
+                        ona  = response.getString("operator_name");
+                        oee_ch = response.getString("oee");
+                        av = response.getString("availability");
+                        rej = response.getString("rejection");
+                        ct = response.getString("cycle_time");
+
+                        setDataMainPage();
+                        setChart1();
+                        setChart2();
+
+                    } catch (JSONException e) {
+                        Log.e("Exception while Json",""+e);
+                    }
+
+                    //progressDialog.dismiss();
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -122,47 +173,10 @@ public class HomeFragment extends Fragment {
 
                     Toast.makeText(getActivity(), "Something Went Wrong !", Toast.LENGTH_SHORT).show();
                     Log.e("Error Main Page ==> ", "" + error);
-                    progressDialog.dismiss();
+                    //progressDialog.dismiss();
 
                 }
             });
-//            StringRequest request = new StringRequest(Request.Method.GET, GlobalData.getUrlHome(), new Response.Listener<String>() {
-//                @Override
-//                public void onResponse(String response) {
-//
-//                    //progressDialog.setMessage("Fetching Data");
-//
-//                    Log.e("Response Main Page ==> ",""+response);
-//                    progressDialog.dismiss();
-//
-//
-//                }
-//            }, new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//
-//                    Toast.makeText(getActivity(), "Something Went Wrong !", Toast.LENGTH_SHORT).show();
-//                    Log.e("Error Main Page ==> ",""+error);
-//                    progressDialog.dismiss();
-//
-//                }
-//            }){
-//                @Override
-//                public Map<String, String> getHeaders() throws AuthFailureError {
-//
-//                    HashMap<String,String> params = new HashMap<>();
-//
-//                    params.put("client_id",GeneralClass.cid);
-//                    params.put("device_id",GeneralClass.did);
-//                    params.put("machine_id",GeneralClass.mid);
-//                    params.put("machine_name",GeneralClass.mname);
-//
-//
-//                    Log.e("Sending Server MP==> ",params.toString());
-//
-//                    return params;
-//                }
-//            };
 
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
             requestQueue.add(request);
@@ -176,8 +190,6 @@ public class HomeFragment extends Fragment {
 
             if (progressDialog.isShowing())
                 progressDialog.dismiss();
-
-            //setDataMainPage();
         }
     }
 
@@ -203,9 +215,6 @@ public class HomeFragment extends Fragment {
         availability_pb.setProgress((int) Double.parseDouble(av));
         productivity_pb.setProgress((int) Double.parseDouble(prd));
         rejection_pb.setProgress((int) Double.parseDouble(rej));
-
-        if (progressDialog.isShowing())
-            progressDialog.dismiss();
     }
 
 
@@ -305,9 +314,12 @@ public class HomeFragment extends Fragment {
     //Function to set OEE percentage chart
     private void setChart1() {
 
+
         float data = Float.parseFloat(oee_ch);
+        pie_chart_oee.clearChart();
         pie_chart_oee.addPieSlice(new PieModel("OEE " + data + "%", data, getActivity().getResources().getColor(R.color.not_active)));
-        pie_chart_oee.setInnerValueString(data + "%");
+        pie_chart_oee.setInnerValueString(new DecimalFormat("##.##").format(data) + "%");
+        pie_chart_oee.setUsePieRotation(false);
 
         if (100 - data > 0) {
             pie_chart_oee.addPieSlice(new PieModel("OEE " + data + "%", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
@@ -321,8 +333,10 @@ public class HomeFragment extends Fragment {
 
         float data = (Float.parseFloat(pro) / Float.parseFloat(ti)) * 100;
 
+        pie_chart_production.clearChart();
         pie_chart_production.addPieSlice(new PieModel("Production " + data + "%", data, getActivity().getResources().getColor(R.color.active)));
-        pie_chart_production.setInnerValueString(data + "%");
+        pie_chart_production.setInnerValueString(new DecimalFormat("##.##").format(data)+ "%");
+        pie_chart_production.setUsePieRotation(false);
 
         if (100 - data > 0) {
             pie_chart_production.addPieSlice(new PieModel("Production " + data + "%", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
@@ -332,4 +346,10 @@ public class HomeFragment extends Fragment {
     }
 
 
+    @Override
+    public void onDestroyView() {
+        handler.removeCallbacks(runnable);
+        Log.e("Destroy==>","Called");
+        super.onDestroyView();
+    }
 }

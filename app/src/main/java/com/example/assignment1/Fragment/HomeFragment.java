@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment {
 
     ProgressDialog progressDialog;
 
-    String sta , sh , jn , ti , orn , st , pro , dw , ona , av , prd = "56.7", rej , ct , oee_ch;
+    String sta , sh , jn , ti , orn , st , pro , dw , ona , av , prd , rej , ct , oee_ch;
 
     Handler handler;
     Runnable runnable;
@@ -156,6 +156,7 @@ public class HomeFragment extends Fragment {
                         av = response.getString("availability");
                         rej = response.getString("rejection");
                         ct = response.getString("cycle_time");
+                        prd = response.getString("productivity");
 
                         setDataMainPage();
                         setChart1();
@@ -322,7 +323,7 @@ public class HomeFragment extends Fragment {
         pie_chart_oee.setUsePieRotation(false);
 
         if (100 - data > 0) {
-            pie_chart_oee.addPieSlice(new PieModel("OEE " + data + "%", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
+            pie_chart_oee.addPieSlice(new PieModel("", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
         }
 
         pie_chart_oee.startAnimation();
@@ -339,7 +340,7 @@ public class HomeFragment extends Fragment {
         pie_chart_production.setUsePieRotation(false);
 
         if (100 - data > 0) {
-            pie_chart_production.addPieSlice(new PieModel("Production " + data + "%", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
+            pie_chart_production.addPieSlice(new PieModel("", 100.0f - data, getActivity().getResources().getColor(R.color.grey)));
         }
 
         pie_chart_production.startAnimation();

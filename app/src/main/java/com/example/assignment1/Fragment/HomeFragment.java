@@ -16,14 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.assignment1.SavedDetailsClass;
 import com.example.assignment1.ServerDataClass;
@@ -37,15 +34,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class HomeFragment extends Fragment {
 
 
-    // PieChartView chartView1,chartView2; // old chart
     PieChart pie_chart_oee, pie_chart_production;
-
     View main_view;
     TextView machine_name, status, shift, job_name, target, order_no, start_time, production,
             downtime, operator_name, availability_tv, productivity_tv, rejection_tv, cycle_time;
@@ -54,7 +48,7 @@ public class HomeFragment extends Fragment {
 
     ProgressDialog progressDialog;
 
-    String sta , sh , jn , ti , orn , st , pro , dw , ona , av , prd , rej , ct , oee_ch;
+    String sta, sh, jn, ti, orn, st, pro, dw, ona, av, prd, rej, ct, oee_ch;
 
     Handler handler;
     Runnable runnable;
@@ -76,32 +70,33 @@ public class HomeFragment extends Fragment {
 
         new fetchData().execute();
 
-        startTimerforAgainHit();
-
+        startTimer();
 
 
         //return view
         return main_view;
     }
 
-    private void startTimerforAgainHit() {
+    //Function for hit the URL again for fetch data
+    private void startTimer() {
 
-        final int delay = 30000;//After 30 sec URL hit again
-        handler=new Handler();
+        final int delay = 5000;//After 30 sec URL hit again
+        handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
 
                 new fetchData().execute();
-                handler.postDelayed(this,delay);
+                handler.postDelayed(this, delay);
             }
         };
 
-        handler.postDelayed(runnable,delay);
+        handler.postDelayed(runnable, delay);
 
     }
 
 
+    //Class for fetching Data from the API in Background
     class fetchData extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -129,7 +124,7 @@ public class HomeFragment extends Fragment {
                 object.put("device_id", SavedDetailsClass.did);
                 object.put("machine_id", SavedDetailsClass.mid);
                 object.put("machine_name", SavedDetailsClass.mname);
-                object.put("content-type","application/json");
+                object.put("content-type", "application/json");
                 Log.e("Sending Server MP==> ", object.toString());
 
             } catch (Exception e) {
@@ -143,27 +138,28 @@ public class HomeFragment extends Fragment {
                     Log.e("Response Main Page ==> ", "" + response);
 
                     try {
+
                         sta = response.getString("status");
-                        sh  = response.getString("shift");
-                        jn  = response.getString("job_name");
-                        ti  = response.getString("target");
-                        orn  = response.getString("order_no");
-                        st  = response.getString("start_time");
-                        pro  = response.getString("production");
-                        dw  = response.getString("downtime");
-                        ona  = response.getString("operator_name");
+                        sh = response.getString("shift");
+                        jn = response.getString("job_name");
+                        ti = response.getString("target");
+                        orn = response.getString("order_no");
+                        st = response.getString("start_time");
+                        pro = response.getString("production");
+                        dw = response.getString("downtime");
+                        ona = response.getString("operator_name");
                         oee_ch = response.getString("oee");
                         av = response.getString("availability");
                         rej = response.getString("rejection");
                         ct = response.getString("cycle_time");
                         prd = response.getString("productivity");
 
-                        setDataMainPage();
                         setChart1();
                         setChart2();
+                        setDataMainPage();
 
                     } catch (JSONException e) {
-                        Log.e("Exception while Json",""+e);
+                        Log.e("Exception while Json", "" + e);
                     }
 
                     //progressDialog.dismiss();
@@ -315,7 +311,6 @@ public class HomeFragment extends Fragment {
     //Function to set OEE percentage chart
     private void setChart1() {
 
-
         float data = Float.parseFloat(oee_ch);
         pie_chart_oee.clearChart();
         pie_chart_oee.addPieSlice(new PieModel("OEE " + data + "%", data, getActivity().getResources().getColor(R.color.not_active)));
@@ -329,6 +324,7 @@ public class HomeFragment extends Fragment {
         pie_chart_oee.startAnimation();
     }
 
+
     //Function to set Production percentage chart
     private void setChart2() {
 
@@ -336,7 +332,7 @@ public class HomeFragment extends Fragment {
 
         pie_chart_production.clearChart();
         pie_chart_production.addPieSlice(new PieModel("Production " + data + "%", data, getActivity().getResources().getColor(R.color.active)));
-        pie_chart_production.setInnerValueString(new DecimalFormat("##.##").format(data)+ "%");
+        pie_chart_production.setInnerValueString(new DecimalFormat("##.##").format(data) + "%");
         pie_chart_production.setUsePieRotation(false);
 
         if (100 - data > 0) {
@@ -347,10 +343,11 @@ public class HomeFragment extends Fragment {
     }
 
 
+    //Remove runnable call back from Handler
     @Override
     public void onDestroyView() {
         handler.removeCallbacks(runnable);
-        Log.e("Destroy==>","Called");
+        Log.e("Destroy==>", "Called");
         super.onDestroyView();
     }
 }

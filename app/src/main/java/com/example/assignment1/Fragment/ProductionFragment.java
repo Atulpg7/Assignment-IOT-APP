@@ -1,6 +1,7 @@
 package com.example.assignment1.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.assignment1.SavedDetailsClass;
@@ -29,8 +31,13 @@ import com.example.assignment1.ServerDataClass;
 import com.example.assignment1.R;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +52,7 @@ public class ProductionFragment extends Fragment {
 
     boolean isOther = false;
     String operator_name;
+    ProgressDialog progressDialog;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +73,7 @@ public class ProductionFragment extends Fragment {
         return main_view;
     }
 
+    //Function for setting button clicks
     private void setButtonClicks() {
 
         start_time.setOnClickListener(new View.OnClickListener() {
@@ -127,46 +136,35 @@ public class ProductionFragment extends Fragment {
                     }else{
                         new sendData().execute();
                     }
-
-
                 }
-
-
             }
         });
 
     }
 
 
+    //Class for sending data to the server
     private class sendData extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog.setMessage("Fetching Data...");
+            progressDialog.setCancelable(false);
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+        }
 
         @Override
         protected Void doInBackground(Void... voids) {
             //Log.e("URL==> ", GlobalData.getUrl());
 
-            StringRequest request = new StringRequest(Request.Method.POST, ServerDataClass.getUrlProduction(), new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
+            Log.e("URL PF Page==> ", ServerDataClass.getUrlDowntime());
 
-                    //progressDialog.setMessage("Fetching Data");
+            JSONObject params = new JSONObject();
 
-                    Log.e("Response ==> ",""+response);
-
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    Toast.makeText(getActivity(), "Something Went Wrong !", Toast.LENGTH_SHORT).show();
-                    Log.e("Error ==> ",""+error);
-
-                }
-            }){
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-
-                    HashMap<String,String> params = new HashMap<>();
+            try {
 
                     params.put("client_id", SavedDetailsClass.cid);
                     params.put("device_id", SavedDetailsClass.did);
@@ -175,23 +173,75 @@ public class ProductionFragment extends Fragment {
                     params.put("job_name",job_name.getText().toString());
                     params.put("rejection_count",rejection_count.getText().toString().trim());
                     params.put("shift_target",shift_target.getText().toString().trim());
-                    params.put("shift_start_time",start_time.getText().toString().trim());
-                    params.put("shift_end_time",end_time.getText().toString().trim());
+                    params.put("shift_start_time",start_time.getText().toString().trim()+":00");
+                    params.put("shift_stop_time",end_time.getText().toString().trim()+":00");
                     params.put("operator_name",operator_name);
 
                     Log.e("Sending Data==> ",params.toString());
-                    return params;
+
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, ServerDataClass.getUrlProduction(), params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    Log.e("Response PF Page ==> ", "" + response);
+
+                    try {
+                        String status  = response.getString("status");
+
+                        if (status.equals("1")){
+                            Toast.makeText(getActivity(), "Successful", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getActivity(), "Didn't update the data !", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        Toast.makeText(getActivity(), "Exception !", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-            };
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Toast.makeText(getActivity(), "Something Went Wrong !", Toast.LENGTH_SHORT).show();
+                    Log.e("Error PF Page ==> ", "" + error);
+                }
+            });
+
 
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
             requestQueue.add(request);
 
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+            resetEditTexts();
+        }
     }
 
 
+    //Function for reset EditTexts
+    private void resetEditTexts() {
+
+        job_name.setText("");
+        shift_target.setText("");
+        rejection_count.setText("");
+        start_time.setText("Select Start Time");
+        end_time.setText("Select End Time");
+        other_operator.setText("");
+    }
+
+
+    //Function for check length of String for validation
     private boolean checkLen(String s) {
         return  s==null || s.equals("");
     }
@@ -229,8 +279,6 @@ public class ProductionFragment extends Fragment {
     }
 
 
-
-
     //Spinner for Operators
     private void setSpinner() {
 
@@ -249,8 +297,7 @@ public class ProductionFragment extends Fragment {
     }
 
 
-
-//    Getting references of all input fields
+    // Getting references of all input fields
     private void getReferences() {
 
         job_name = main_view.findViewById(R.id.job_name);
@@ -262,6 +309,8 @@ public class ProductionFragment extends Fragment {
         other_operator = main_view.findViewById(R.id.other_operator);
         start_time=main_view.findViewById(R.id.txt_start_time);
         end_time=main_view.findViewById(R.id.txt_end_time);
+
+        progressDialog = new ProgressDialog(getActivity());
     }
 
 }

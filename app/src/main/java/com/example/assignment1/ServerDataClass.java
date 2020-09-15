@@ -4,6 +4,7 @@ public class ServerDataClass {
 
     static String BASE_URL = "http://";
     static String IP_Address;
+    //static String PORT = ":7007";
     static String SUB_URL_HOME = "/machine_monitoring/mobile_app/home_dashboard";
     static String SUB_URL_DOWNTIME = "/machine_monitoring/mobile_app/downtime";
     static String SUB_URL_PRODUCTION = "/machine_monitoring/mobile_app/production_data";
